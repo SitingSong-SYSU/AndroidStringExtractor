@@ -1,6 +1,6 @@
 # AndroidStringExtractor 插件
 
-- 特别感谢(https://github.com/a-voyager/StringExtractor)[String Extractor 插件]
+- 特别感谢[https://github.com/a-voyager/StringExtractor](String Extractor 插件)
 
 -  批量完成项目内中文硬编码替换
 
