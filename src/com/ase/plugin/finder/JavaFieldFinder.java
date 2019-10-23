@@ -12,7 +12,8 @@ public class JavaFieldFinder extends AbsFieldFinder {
 
     @Override
     protected String transformToString(String it) {
-        return it.replace("\"", "");
+        String result = it.replace(" ", "&#160;");
+        return result.replace("\"", "");
     }
 
     @Override

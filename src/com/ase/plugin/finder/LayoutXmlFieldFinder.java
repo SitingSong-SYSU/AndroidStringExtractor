@@ -9,6 +9,7 @@ public class LayoutXmlFieldFinder extends AbsFieldFinder {
     @Override
     protected String transformToString(String it) {
         String result = it.replace("android:text=\"", "");
+        result = it.replace(" ", "&#160;");
         return result.replace("\"", "");
     }
 

@@ -57,6 +57,7 @@ public class StringsWriter extends AbsWriter {
         for (FieldEntity field : set) {
             // 特殊字符转义
             String attribute = htmlEncode(field.source);
+            attribute = attribute.replace("&amp;#160;", "&#160;");
             System.out.println("~~~attribute: " + attribute);
             XmlTag childTag = rootTag.createChildTag("string", "", attribute, false);
 
