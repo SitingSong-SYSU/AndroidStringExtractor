@@ -43,7 +43,8 @@ public abstract class AbsFieldFinder {
             List<FieldEntity> fieldEntities = new ArrayList<>();
             while (result.find()) {
                 String s = transformToString(result.group());
-                if (isDefaultChecked(s) && isChinese(s)) {
+//                if (isDefaultChecked(s) && isChinese(s)) {
+                if (s != null && s.trim().length() > 0) {
                     fieldEntities.add(new FieldEntity(s, "", true));
                 }
             }

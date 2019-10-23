@@ -12,7 +12,7 @@ public class TaskHolder {
     public List<FieldEntity> fields = new ArrayList<FieldEntity>();
     public VirtualFile currentFile = null;
     public VirtualFile desFile = null;
-    public String descTag = "START";
+    public String descTag = "SHORT_NAME";
     public PsiFile psiFile = null;
 
     public List<FieldEntity> selectedFields() {

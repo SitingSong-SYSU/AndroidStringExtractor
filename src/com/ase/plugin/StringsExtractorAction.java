@@ -46,6 +46,7 @@ public class StringsExtractorAction extends BaseGenerateAction {
 
     @Override
     public void actionPerformed(AnActionEvent e) {
+        System.out.println("~~~start");
         project = e.getData(PlatformDataKeys.PROJECT);
         editor = e.getData(PlatformDataKeys.EDITOR);
         if (project == null || editor == null) {
@@ -112,7 +113,7 @@ public class StringsExtractorAction extends BaseGenerateAction {
         for(PsiFile f : files){
             AbsFieldFinder fieldFinder;
             // 按模块分别执行替换
-            if (f.getParent() != null && f.getParent().toString().contains("service")) {
+//            if (f.getParent() != null && f.getParent().toString().contains("service")) {
                 if (f.getFileType() instanceof JavaFileType) {
                     fieldFinder = new JavaFieldFinder();
                 } else if (f.getFileType() instanceof XmlFileType) {
@@ -120,21 +121,21 @@ public class StringsExtractorAction extends BaseGenerateAction {
                 } else {
                     continue;
                 }
-            } else {
-                continue;
-            }
+//            } else {
+//                continue;
+//            }
             TaskHolder taskHolder = fieldFinder.find(f);
             taskHolder.psiFile = f;
             FileProcessor.getInstance().process(project, f, taskHolder);
-            TranslateProcessor.getInstance().process(taskHolder);
-            TextFormatProcessor.getInstance().process(taskHolder);
-            PrefixProcessor.getInstance().refreshDefaultPrefix(project, f, taskHolder);
+//            TranslateProcessor.getInstance().process(taskHolder);
+//            TextFormatProcessor.getInstance().process(taskHolder);
+//            PrefixProcessor.getInstance().refreshDefaultPrefix(project, f, taskHolder);
             if (taskHolder.fields.size() > 0) {
                 taskHolders.add(taskHolder);
             }
-//            for (FieldEntity fieldEntity : taskHolder.fields) {
-//                System.out.println("~~~" + taskHolder.currentFile + "~~~" + fieldEntity.source);
-//            }
+            for (FieldEntity fieldEntity : taskHolder.fields) {
+                System.out.println("~~~" + taskHolder.currentFile + "~~~" + fieldEntity.source);
+            }
         }
         for (PsiDirectory file : directory.getSubdirectories())	{
             // 过滤build文件夹下内容

@@ -12,11 +12,14 @@ public class JavaFieldFinder extends AbsFieldFinder {
 
     @Override
     protected String transformToString(String it) {
-        return it.replace("\"", "");
+//        return it.replace("\"", "");
+        return it.replace("R.string.", "");
     }
 
     @Override
     protected String regex() {
-        return "\".*?[^\\\\]\"";
+//        return "\".*?[^\\\\]\"";
+//        return "AppProfile\\.getContext\\(\\)\\.getString\\(R\\.string\\..{64,}\\)";
+        return "R\\.string\\.[A-Za-z0-9_]{64,}";
     }
 }

@@ -18,16 +18,16 @@ public class JavaWriter  extends AbsWriter {
         VirtualFile file = taskHolder.currentFile;
         String content = readFileContent(file);
 
-        // 添加 import
-        content = content.replaceFirst("import",
-                "import im.yixin.app.AppProfile;\n" +
-                "import");
+//        // 添加 import
+//        content = content.replaceFirst("import",
+//                "import im.yixin.app.AppProfile;\n" +
+//                "import");
 
         String extractTemplate = FieldsDialog.TEMPLATE;
         for (FieldEntity field : taskHolder.selectedFields()) {
             String text = field.source;
             String replace = extractTemplate.replace(FieldsDialog.ID, "R.string." + field.result);
-            content = content.replace("\"" + text + "\"", replace);
+            content = content.replace(field.source, field.source.substring(0, 63));
         }
 
         writeFileContent(file, content);

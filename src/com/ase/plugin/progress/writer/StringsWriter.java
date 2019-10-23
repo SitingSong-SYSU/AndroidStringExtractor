@@ -49,32 +49,38 @@ public class StringsWriter extends AbsWriter {
     private void writeContent(XmlTag rootTag, TaskHolder taskHolder) {
         List<FieldEntity> fields = taskHolder.selectedFields();
 
-        // 去重
-        Set<FieldEntity> set = new HashSet<>();
-        for (FieldEntity field : fields) {
-            set.add(field);
-        }
-        for (FieldEntity field : set) {
-            // 特殊字符转义
-            String attribute = htmlEncode(field.source);
-            System.out.println("~~~attribute: " + attribute);
-            XmlTag childTag = rootTag.createChildTag("string", "", attribute, false);
-
-            childTag.setAttribute("name", field.result);
-            rootTag.add(childTag);
-        }
-
-
+//        // 去重
+//        Set<FieldEntity> set = new HashSet<>();
 //        for (FieldEntity field : fields) {
-//            XmlTag childTag = rootTag.createChildTag("string", "", field.source, false);
+//            set.add(field);
+//        }
+//        for (FieldEntity field : set) {
+//            // 特殊字符转义
+//            String attribute = htmlEncode(field.source);
+//            System.out.println("~~~attribute: " + attribute);
+//            XmlTag childTag = rootTag.createChildTag("string", "", attribute, false);
 //
-//            // 特殊字符替换
-//            String attribute = field.result.replace("<", "&#060;");
-//            attribute = attribute.replace(">", "&#062;");
-//
-//            childTag.setAttribute("name", attribute);
+//            childTag.setAttribute("name", field.result);
 //            rootTag.add(childTag);
 //        }
+
+
+        for (FieldEntity field : fields) {
+
+            XmlTag[] xmlTags = rootTag.getSubTags();
+            for (XmlTag xmlTag : xmlTags) {
+//                System.out.println("~~~~!attribute: " + xmlTag.getAttribute("name").getValue());
+//                System.out.println("~~~~!field.source: " + field.source);
+                if (xmlTag.getAttribute("name").getValue().equals(field.source)) {
+                    field.result = xmlTag.getValue().getText();
+                    System.out.println("~~~attribute: " + field.result);
+                }
+            }
+
+            XmlTag childTag = rootTag.createChildTag("string", "", field.result, false);
+            childTag.setAttribute("name", field.source.substring(0, 63));
+            rootTag.add(childTag);
+        }
     }
 
 
@@ -87,7 +93,6 @@ public class StringsWriter extends AbsWriter {
         if (xmlFile == null) {
             return;
         }
-        System.out.println("~~~" + xmlFile.getParent());
         XmlTag rootTag = xmlFile.getRootTag();
         if (rootTag == null) {
             return;
