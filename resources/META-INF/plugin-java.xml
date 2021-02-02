@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<idea-plugin>
+
+    <application-components>
+        <component>
+            <implementation-class>com.ase.plugin.autoSave.component.JavaComponent</implementation-class>
+        </component>
+    </application-components>
+
+    <project-components>
+    </project-components>
+
+</idea-plugin>

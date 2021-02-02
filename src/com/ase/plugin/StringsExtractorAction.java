@@ -10,7 +10,6 @@ import com.ase.plugin.progress.PrefixProcessor;
 import com.ase.plugin.progress.TextFormatProcessor;
 import com.ase.plugin.progress.TranslateProcessor;
 import com.ase.plugin.progress.writer.DataWriter;
-import com.ase.plugin.ui.FieldsDialog;
 import com.intellij.codeInsight.CodeInsightActionHandler;
 import com.intellij.codeInsight.generation.actions.BaseGenerateAction;
 import com.intellij.ide.highlighter.JavaFileType;
@@ -78,11 +77,11 @@ public class StringsExtractorAction extends BaseGenerateAction {
             findFile(file);
         }
 
-        System.out.println("~~~ taskHolders size: " + taskHolders.size());
+        System.out.println("~~~~ taskHolders size: " + taskHolders.size());
         ExecutorService fixedThreadPool = Executors.newFixedThreadPool(13); // 固定数量线程池
         for (TaskHolder taskHolder : taskHolders) {
             fixedThreadPool.execute(() -> {
-                System.out.println("~~~ taskHolder name: " +taskHolder.currentFile.getName());
+                System.out.println("~~~~ taskHolder name: " +taskHolder.currentFile.getName());
                 DataWriter dataWriter = new DataWriter(taskHolder.psiFile, project, taskHolder);
                 dataWriter.go();
             });
@@ -132,9 +131,9 @@ public class StringsExtractorAction extends BaseGenerateAction {
             if (taskHolder.fields.size() > 0) {
                 taskHolders.add(taskHolder);
             }
-//            for (FieldEntity fieldEntity : taskHolder.fields) {
-//                System.out.println("~~~" + taskHolder.currentFile + "~~~" + fieldEntity.source);
-//            }
+            for (FieldEntity fieldEntity : taskHolder.fields) {
+                System.out.println("~~~~" + taskHolder.currentFile + "~~~~" + fieldEntity.source);
+            }
         }
         for (PsiDirectory file : directory.getSubdirectories())	{
             // 过滤build文件夹下内容

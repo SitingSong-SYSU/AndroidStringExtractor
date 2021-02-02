@@ -58,7 +58,7 @@ public class StringsWriter extends AbsWriter {
             // 特殊字符转义
             String attribute = htmlEncode(field.source);
             attribute = attribute.replace("&amp;#160;", "&#160;");
-            System.out.println("~~~attribute: " + attribute);
+            System.out.println("~~~~attribute: " + attribute);
             XmlTag childTag = rootTag.createChildTag("string", "", attribute, false);
 
             childTag.setAttribute("name", field.result);
@@ -88,7 +88,7 @@ public class StringsWriter extends AbsWriter {
         if (xmlFile == null) {
             return;
         }
-        System.out.println("~~~" + xmlFile.getParent());
+        System.out.println("~~~~" + xmlFile.getParent());
         XmlTag rootTag = xmlFile.getRootTag();
         if (rootTag == null) {
             return;
@@ -108,15 +108,15 @@ public class StringsWriter extends AbsWriter {
             char c = source.charAt(i);
             switch (c) {
                 case '<':
-                    System.out.println("~~~catch < ");
+                    System.out.println("~~~~catch < ");
                     buffer.append("&lt;");
                     break;
                 case '>':
-                    System.out.println("~~~catch > ");
+                    System.out.println("~~~~catch > ");
                     buffer.append("&gt;");
                     break;
                 case '&':
-                    System.out.println("~~~catch & ");
+                    System.out.println("~~~~catch & ");
                     buffer.append("&amp;");
                     break;
                 case '"':

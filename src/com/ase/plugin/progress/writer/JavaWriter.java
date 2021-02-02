@@ -1,13 +1,29 @@
 package com.ase.plugin.progress.writer;
 
+import com.ase.plugin.autoSave.model.Storage;
 import com.ase.plugin.entity.FieldEntity;
 import com.ase.plugin.entity.TaskHolder;
 import com.ase.plugin.ui.FieldsDialog;
+import com.intellij.openapi.components.ServiceManager;
+import com.intellij.openapi.project.Project;
+import com.intellij.openapi.project.ProjectManager;
 import com.intellij.openapi.vfs.VirtualFile;
 
-public class JavaWriter  extends AbsWriter {
+public class JavaWriter extends AbsWriter {
+
+    private Project project;
+    private String headFile;
+    private String stringFormat;
+
+    public JavaWriter(Project project) {
+        this.project = project;
+    }
 
     public void process(TaskHolder taskHolder) {
+        Storage storage = ServiceManager.getService(project, Storage.class);
+        stringFormat = storage.getStringFormat();
+        headFile = storage.getHeadFile();
+        System.out.println("~~~~stringFormat: " + stringFormat + " headFile: " + headFile);
         write(taskHolder);
     }
 
@@ -20,13 +36,13 @@ public class JavaWriter  extends AbsWriter {
 
         // 添加 import
         content = content.replaceFirst("import",
-                "import im.yixin.app.AppProfile;\n" +
+                "import " + headFile + ";\n" +
                 "import");
 
-        String extractTemplate = FieldsDialog.TEMPLATE;
+//        String extractTemplate = "AppProfile.getContext().getString($id)";
         for (FieldEntity field : taskHolder.selectedFields()) {
             String text = field.source;
-            String replace = extractTemplate.replace(FieldsDialog.ID, "R.string." + field.result);
+            String replace = stringFormat.replace("$id", "R.string." + field.result);
             content = content.replace("\"" + text + "\"", replace);
         }
 

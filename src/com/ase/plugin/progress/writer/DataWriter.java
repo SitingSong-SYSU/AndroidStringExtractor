@@ -52,8 +52,8 @@ public class DataWriter extends WriteCommandAction.Simple {
     @Override
     protected void run() {
 
-        if (file instanceof PsiJavaFile) {
-            JavaWriter javaWriter = new JavaWriter();
+        if (file instanceof PsiJavaFile || file.getFileType().getName().contains("Kotlin")) {
+            JavaWriter javaWriter = new JavaWriter(project);
             javaWriter.process(taskHolder);
         } else if (file instanceof XmlFile) {
             XmlWriter xmlWriter = new XmlWriter();

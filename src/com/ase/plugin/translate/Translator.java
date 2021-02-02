@@ -2,8 +2,8 @@ package com.ase.plugin.translate;
 
 
 public class Translator {
-    private static String appId = "TestAppId";
-    private static String securityKey = "TestSecurityKey";
+    private static String appId = "20190820000327955";
+    private static String securityKey = "xGU3wlOITdvNScAJaTHz";
 
     private static TransApi api;
 
