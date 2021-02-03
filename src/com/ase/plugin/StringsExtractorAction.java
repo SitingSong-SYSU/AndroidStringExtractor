@@ -133,6 +133,7 @@ public class StringsExtractorAction extends BaseGenerateAction {
             }
             for (FieldEntity fieldEntity : taskHolder.fields) {
                 System.out.println("~~~~" + taskHolder.currentFile + "~~~~" + fieldEntity.source);
+                System.out.println("一个121");
             }
         }
         for (PsiDirectory file : directory.getSubdirectories())	{

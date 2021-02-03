@@ -4,6 +4,7 @@ import com.ase.plugin.autoSave.model.Storage;
 import com.ase.plugin.entity.FieldEntity;
 import com.ase.plugin.entity.TaskHolder;
 import com.ase.plugin.ui.FieldsDialog;
+import com.ase.plugin.util.TextUtil;
 import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.project.ProjectManager;
@@ -35,9 +36,11 @@ public class JavaWriter extends AbsWriter {
         String content = readFileContent(file);
 
         // 添加 import
-        content = content.replaceFirst("import",
-                "import " + headFile + ";\n" +
-                "import");
+        if (!TextUtil.isEmpty(headFile)) {
+            content = content.replaceFirst("import",
+                    "import " + headFile + ";\n" +
+                            "import");
+        }
 
 //        String extractTemplate = "AppProfile.getContext().getString($id)";
         for (FieldEntity field : taskHolder.selectedFields()) {
