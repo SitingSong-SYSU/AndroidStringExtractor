@@ -1,6 +1,7 @@
 package com.ase.plugin.util;
 
-import io.reactivex.annotations.Nullable;
+
+import javax.annotation.Nullable;
 
 public class TextUtil {
     /**

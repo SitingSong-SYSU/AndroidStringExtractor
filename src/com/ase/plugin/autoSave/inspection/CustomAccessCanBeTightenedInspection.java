@@ -31,7 +31,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Copy pasting because: cannot extend. Do not reformat (useful for diffs)
  * 复制粘贴原因:无法扩展。不要重新格式化(对于diffs很有用)
  *
- * @see com.intellij.codeInspection.visibility.AccessCanBeTightenedInspection
+ * @see
  */
 @SuppressWarnings("deprecation")
 public class CustomAccessCanBeTightenedInspection extends com.intellij.codeInspection.BaseJavaBatchLocalInspectionTool {
@@ -49,7 +49,7 @@ public class CustomAccessCanBeTightenedInspection extends com.intellij.codeInspe
     @Override
     @NotNull
     public String getGroupDisplayName() {
-        return GroupNames.VISIBILITY_GROUP_NAME;
+        return GroupNames.MODULARIZATION_GROUP_NAME;
     }
 
     @Override

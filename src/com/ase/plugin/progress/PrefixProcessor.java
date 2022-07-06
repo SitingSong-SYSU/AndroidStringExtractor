@@ -50,7 +50,7 @@ public class PrefixProcessor {
         taskHolder.prefix = prefix;
         List<FieldEntity> fields = taskHolder.fields;
         for (int i = 0; i < fields.size(); i++) {
-            fields.get(i).result = prefix + fields.get(i).resultSrc;
+            fields.get(i).result = fields.get(i).resultSrc;
         }
     }
 }

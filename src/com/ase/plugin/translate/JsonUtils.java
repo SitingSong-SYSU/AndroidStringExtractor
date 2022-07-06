@@ -1,7 +1,7 @@
 package com.ase.plugin.translate;
 
 import com.google.gson.Gson;
-import org.omg.CORBA.Any;
+//import org.omg.CORBA.Any;
 
 import java.lang.reflect.Type;
 
@@ -18,7 +18,7 @@ public class JsonUtils {
     }
 
 
-    public String toJson(Any src) {
-        return gson.toJson(src);
-    }
+//    public String toJson(Any src) {
+//        return gson.toJson(src);
+//    }
 }

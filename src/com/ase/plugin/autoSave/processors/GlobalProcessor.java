@@ -16,7 +16,7 @@ import java.util.Set;
 import java.util.function.BiFunction;
 import java.util.stream.Stream;
 
-import static com.intellij.codeInsight.actions.RearrangeCodeProcessor.COMMAND_NAME;
+//import static com.intellij.codeInsight.actions.RearrangeCodeProcessor.COMMAND_NAME;
 
 /**
  * Available processors for global.
@@ -33,8 +33,8 @@ public enum GlobalProcessor implements Processor {
     reformatChangedCode(Action.reformatChangedCode,
             (project, psiFiles) -> new ReformatCodeProcessor(project, psiFiles, null, true)::run),
 
-    rearrange(Action.rearrange,
-            (project, psiFiles) -> new RearrangeCodeProcessor(project, psiFiles, COMMAND_NAME, null)::run),
+//    rearrange(Action.rearrange,
+//            (project, psiFiles) -> new RearrangeCodeProcessor(project, psiFiles, COMMAND_NAME, null)::run),
 
     ;
 

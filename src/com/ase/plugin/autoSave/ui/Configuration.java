@@ -10,7 +10,7 @@ import com.intellij.openapi.project.Project;
 import org.apache.batik.bridge.TextUtilities;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.Nullable;
-import org.jf.util.TextUtils;
+//import org.jf.util.TextUtils;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;

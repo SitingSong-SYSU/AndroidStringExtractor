@@ -31,7 +31,7 @@ public enum Action {
     noActionIfCompileErrors("No action if compile errors (applied per file)",
             activation, false),
 
-    stringExtractor("字符串格式化", global, false),
+    stringExtractor("字符串格式化", global, true),
 
     // Global
 

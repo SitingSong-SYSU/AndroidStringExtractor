@@ -22,10 +22,7 @@ public class FileProcessor {
     }
 
     // src/main/res/values/strings.xml
-    private String defaultFilePath = "src/main/res/values/strings.xml";
-
-    // serviceuikit/libsticker
-//    private String defaultFilePath = "/res/values/strings.xml";
+    private String defaultFilePath = "/src/main/res/values/strings.xml";
 
     public void process(Project project, PsiFile psiFile, TaskHolder taskHolder) {
         VirtualFile virtualFile = psiFile.getVirtualFile();
@@ -38,7 +35,8 @@ public class FileProcessor {
         if (moduleFile == null) {
             return;
         }
-        VirtualFile desFile = moduleFile.getParent().findFileByRelativePath(defaultFilePath);
+        String moduleName = moduleFile.getParent().getName();
+        VirtualFile desFile = moduleFile.getParent().getParent().getParent().getParent().findFileByRelativePath(moduleName + defaultFilePath);
         if (desFile == null) {
             return;
         }

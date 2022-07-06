@@ -37,9 +37,16 @@ public class JavaWriter extends AbsWriter {
 
         // 添加 import
         if (!TextUtil.isEmpty(headFile)) {
-            content = content.replaceFirst("import",
-                    "import " + headFile + ";\n" +
-                            "import");
+            String[] list = headFile.split(";");
+            if (list != null && list.length > 0) {
+                for (String s : list) {
+                    if (!content.contains(s)) {
+                        content = content.replaceFirst("import",
+                                "import " + s + ";\n" +
+                                        "import");
+                    }
+                }
+            }
         }
 
 //        String extractTemplate = "AppProfile.getContext().getString($id)";

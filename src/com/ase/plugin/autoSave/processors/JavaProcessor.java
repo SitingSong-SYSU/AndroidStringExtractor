@@ -74,8 +74,8 @@ public enum JavaProcessor implements Processor {
     useBlocks(Action.useBlocks,
             ControlFlowStatementWithoutBracesInspection::new),
 
-    generateSerialVersionUID(Action.generateSerialVersionUID,
-            SerializableHasSerialVersionUIDFieldInspectionWrapper::get),
+//    generateSerialVersionUID(Action.generateSerialVersionUID,
+//            SerializableHasSerialVersionUIDFieldInspectionWrapper::get),
 
     unnecessaryThis(Action.unnecessaryThis,
             UnnecessaryThisInspection::new),

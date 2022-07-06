@@ -15,9 +15,12 @@
 
   <idea-version since-build="173.0"/>
 
+  <depends optional="true" config-file="plugin-java.xml">com.intellij.modules.java</depends>
 
   <extensions defaultExtensionNs="com.intellij">
     <!-- Add your extensions here -->
+    <projectService serviceImplementation="com.ase.plugin.autoSave.model.Storage"/>
+    <projectConfigurable id="settings.saveactions" instance="com.ase.plugin.autoSave.ui.Configuration"/>
   </extensions>
 
   <actions>
@@ -26,6 +29,39 @@
             text="Strings Extractor Plugin" description="Strings extractor plugin">
       <keyboard-shortcut keymap="$default" first-keystroke="alt E"/>
     </action>
+
+    <group id="com.dubreuia.core.action.SaveActionsGroup"
+           text="Save Actions"
+           popup="true">
+      <add-to-group group-id="CodeFormatGroup"
+                    anchor="after"
+                    relative-to-action="RearrangeCode"/>
+
+      <action id="com.ase.plugin.autoSave.action.ToggleAction"
+              class="com.ase.plugin.autoSave.action.ToggleAction"
+              text="Enable Save Actions"
+              description="Toggle the activation of Save Actions"/>
+
+<!--      <action id="com.dubreuia.core.action.ShortcutAction"-->
+<!--              class="com.dubreuia.core.action.ShortcutAction"-->
+<!--              text="Execute Save Actions on shortcut"-->
+<!--              description="Executes Save Actions with a shortcut">-->
+<!--        <keyboard-shortcut keymap="$default"-->
+<!--                           first-keystroke="shift ctrl S"/>-->
+<!--      </action>-->
+
+<!--      <action id="com.dubreuia.core.action.BatchAction"-->
+<!--              class="com.dubreuia.core.action.BatchAction"-->
+<!--              text="Execute Save Actions on multiple files"-->
+<!--              description="Executes save actions on multiple files">-->
+<!--      </action>-->
+    </group>
   </actions>
+
+  <application-components>
+    <component>
+      <implementation-class>com.ase.plugin.autoSave.component.Component</implementation-class>
+    </component>
+  </application-components>
 
 </idea-plugin>

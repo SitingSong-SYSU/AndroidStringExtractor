@@ -1,0 +1,9 @@
+*.iml
+*.puml
+.DS_Store
+.gradle
+.idea
+.externalNativeBuild
+.git-credentials
+local.properties
+/out/
