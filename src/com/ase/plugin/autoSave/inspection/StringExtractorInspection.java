@@ -70,17 +70,13 @@ public class StringExtractorInspection extends BaseInspection {
             super.visitFile(file);
             AbsFieldFinder fieldFinder;
             // 按模块分别执行替换
-//            if (file.getParent() != null && file.getParent().toString().contains("service")) {
-                if (file.getFileType() instanceof JavaFileType || file.getFileType().getName().contains("Kotlin")) {
-                    fieldFinder = new JavaFieldFinder();
-                } else if (file.getFileType() instanceof XmlFileType) {
-                    fieldFinder = new LayoutXmlFieldFinder();
-                } else {
-                    return;
-                }
-//            } else {
-//                return;
-//            }
+            if (file.getFileType() instanceof JavaFileType || file.getFileType().getName().contains("Kotlin")) {
+                fieldFinder = new JavaFieldFinder();
+            } else if (file.getFileType() instanceof XmlFileType && !file.getName().contains("strings")) {
+                fieldFinder = new LayoutXmlFieldFinder();
+            } else {
+                return;
+            }
             TaskHolder taskHolder = fieldFinder.find(file);
             System.out.println("~~~~visitFile: " + taskHolder.fields.size());
             if (taskHolder.fields.size() > 0) {

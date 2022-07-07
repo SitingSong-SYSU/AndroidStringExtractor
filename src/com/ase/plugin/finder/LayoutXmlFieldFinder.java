@@ -8,13 +8,13 @@ public class LayoutXmlFieldFinder extends AbsFieldFinder {
 
     @Override
     protected String transformToString(String it) {
-        String result = it.replace("android:text=\"", "");
-        result = it.replace(" ", "&#160;");
+        String result = it.replace("\"", "");
+        result = result.replace(" ", "&#160;");
         return result.replace("\"", "");
     }
 
     @Override
     protected String regex() {
-        return "android:text=\".*?\"";
+        return "\".*?\"";
     }
 }

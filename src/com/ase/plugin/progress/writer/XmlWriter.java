@@ -14,8 +14,8 @@ public class XmlWriter extends AbsWriter {
         String content = readFileContent(file);
         for (FieldEntity field : taskHolder.selectedFields()) {
             String text = field.source;
-            content = content.replace("android:text=\"" + text + "\"",
-                    "android:text=\"@string/" + field.result + "\"");
+            content = content.replace("\"" + text + "\"",
+                    "\"@string/" + field.result + "\"");
         }
         writeFileContent(file, content);
     }
